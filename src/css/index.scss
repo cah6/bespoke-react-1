@@ -1,0 +1,220 @@
+@use 'layouts';
+@charset "utf-8";
+@import url("https://use.fontawesome.com/releases/v5.3.1/css/all.css");
+
+//////////////////////////////////////////////////////////////////////////////
+// Global styles & vars
+
+:root {
+  // golden ratio ¯\_(ツ)_/¯
+  --ratio: 1.61803398875;
+  --s-5: calc(var(--s-4) / var(--ratio));
+  --s-4: calc(var(--s-3) / var(--ratio));
+  --s-3: calc(var(--s-2) / var(--ratio));
+  --s-2: calc(var(--s-1) / var(--ratio));
+  --s-1: calc(var(--s0) / var(--ratio));
+  --s0: 1rem;
+  --s1: calc(var(--s0) * var(--ratio)); // 1.61 = 25.76
+  --s2: calc(var(--s1) * var(--ratio));
+  --s3: calc(var(--s2) * var(--ratio));
+  --s4: calc(var(--s3) * var(--ratio));
+  --s5: calc(var(--s4) * var(--ratio));
+
+  --border-thin: 2px;
+  --border-thick: 4px;
+  --color-light: #fff;
+  --color-dark: #000;
+  --measure: 80ch;
+
+  --color-primary: #00ffb3;
+  // --color-secondary: #efaaaa;
+
+  font-size: 300%;
+}
+
+// Smaller on phones
+@media (max-width: 960px) {
+  :root {
+    font-size: 150%;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  max-width: var(--measure);
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+div,
+header,
+nav,
+main,
+footer,
+center-l,
+cover-l,
+stack-l,
+grid-l,
+reel-l,
+section {
+  max-width: none;
+}
+
+// should box-l be capped here too?
+reel-l {
+  max-width: 100vw;
+}
+
+img {
+  max-width: 100%;
+}
+
+p {
+  max-width: 50ch;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Deck & slides
+
+.bespoke-slide {
+  overflow: hidden;
+  // NOTE force opacity to start at 0 to avoid transition on load when using bespoke-scale
+  opacity: 0;
+  background-color: white;
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  transition: opacity 100ms ease-in-out 150ms;
+}
+
+.bespoke-active {
+  pointer-events: auto;
+  opacity: 1;
+  z-index: 1; // needed for pointer
+}
+
+.bespoke-bullet {
+  transition: opacity 200ms ease-in-out;
+}
+
+.bespoke-bullet-inactive {
+  visibility: hidden;
+}
+
+.deck {
+  overflow: hidden;
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // NOTE hide deck and slide content until Bespoke.js classes have been added
+  &:not(.bespoke-parent),
+  section:not(.bespoke-slide) {
+    display: none;
+  }
+}
+
+.bespoke-parent,
+.bespoke-scale-parent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// .bespoke-scale-parent,
+// .bespoke-slide {
+//   pointer-events: none;
+// }
+
+// .bespoke-inactive {
+//   transition-delay: 0;
+// }
+
+.bespoke-progress-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.3vw;
+}
+
+.bespoke-progress-bar {
+  position: absolute;
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 0.6s ease;
+  z-index: 1; // on top of bespoke-active
+}
+
+// .bespoke-bullet {
+//   visibility: visible;
+// }
+
+// .bespoke-bullet:before {
+//   content: "";
+// }
+
+// .bespoke-bullet-current:before {
+//   content: "→";
+// }
+
+//////////////////////////////////////////////////////////////////////////////
+// Intro slide
+
+.intro-slide {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+
+  grid-template-areas:
+    "a b c"
+    "d e c";
+
+  height: 100%;
+  width: 100%;
+}
+
+.intro__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.intro__header {
+  grid-area: b;
+
+  color: var(--color-primary);
+  align-self: center;
+  justify-self: center;
+  z-index: 1;
+}
+
+.intro__item-wavy {
+  grid-area: b;
+}
+
+.intro__item-tall {
+  grid-area: c;
+}
+
+.intro__item-johnny {
+  grid-area: e;
+}
+
+.intro__item-louche {
+  grid-area: d;
+}
+
+.intro__item-bojack {
+  grid-area: a;
+}

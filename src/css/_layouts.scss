@@ -1,0 +1,165 @@
+//////////////////////////////////////////////////////////////////////////////
+// Layouts
+
+// Box
+box-l {
+  display: block;
+  padding: var(--s1);
+  border-width: var(--border-thin);
+  /* ↓ For high contrast mode */
+  outline: var(--border-thin) solid transparent;
+  outline-offset: calc(var(--border-thin) * -1);
+}
+
+// Center
+center-l {
+  display: block;
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--measure);
+}
+
+// Cluster
+cluster-l > * {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: calc(var(--s1) / 2 * -1);
+}
+
+cluster-l > * > * {
+  margin: calc(var(--s1) / 2);
+}
+
+// Cover
+cover-l {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: var(--s1);
+}
+
+// Frame
+frame-l {
+  display: block;
+  position: relative;
+  padding-bottom: calc(6 / 9 * 100%);
+}
+
+frame-l > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+frame-l > img,
+frame-l > video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+// Grid
+grid-l {
+  display: grid;
+  grid-gap: var(--s1);
+  align-content: start;
+  grid-template-columns: 100%;
+}
+
+// Icon
+icon-l svg {
+  height: 0.75em;
+  height: 1cap;
+  width: 0.75em;
+  width: 1cap;
+}
+
+// Imposter
+imposter-l {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Reel
+reel-l {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-color: var(--color-light) var(--color-dark);
+}
+
+reel-l > * {
+  flex: 0 0 var(--item-width);
+}
+
+reel-l > img {
+  height: 100%;
+  flex-basis: auto;
+  width: auto;
+}
+
+reel-l::-webkit-scrollbar {
+  height: 1rem;
+}
+
+reel-l::-webkit-scrollbar-track {
+  background-color: var(--color-dark);
+}
+
+reel-l::-webkit-scrollbar-thumb {
+  background-color: var(--color-dark);
+  background-image: linear-gradient(
+    var(--color-dark) 0,
+    var(--color-dark) 0.25rem,
+    var(--color-light) 0.25rem,
+    var(--color-light) 0.75rem,
+    var(--color-dark) 0.75rem
+  );
+}
+
+// Sidebar
+sidebar-l > * {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+sidebar-l > * > * {
+  flex-grow: 1;
+}
+
+// Stack
+stack-l {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+stack-l > * + * {
+  margin-top: var(--s1);
+}
+
+// Switcher
+switcher-l {
+  display: block;
+}
+
+switcher-l > * {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+switcher-l > * > * {
+  flex-basis: calc((var(--measure) - 100%) * 999);
+  flex-grow: 1;
+}
